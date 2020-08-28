@@ -2,9 +2,11 @@ import React from 'react';
 
 class RouletteGun extends React.Component {
   constructor(props) {
+
     console.log('props in constructor', props)
     super(props)
     this.state = {
+      bulletInChamber: this.props.bulletInChamber,
       chamber: null,
       spinningTheChamber: false
     }
@@ -20,18 +22,28 @@ clickHandler() {
     let randomNumber = Math.ceil(Math.random() * 8)
     console.log(randomNumber)
    this.setState({
+
     chamber: randomNumber,
     spinningTheChamber: false,
    })
   }, 2000)
 }
 
+componentWillUnmount() {
+  clearTimeout(this.timeout)
+}
+
   render() {
+    const { chamber, spinningTheChamber } = this.state
+    const { bulletInChamber } = this.props
+    console.log(this.state.bulletInChamber)
     let message
-      if (this.state.spinningTheChamber) {
-       message =  <p>spinning the chamber and pulling the trigger! ...</p>
-      } else if (this.state.chamber === this.state.bulletInChamber) {
-        message =  <p>you're safe!</p>
+      if (spinningTheChamber) {
+       message =  'spinning the chamber and pulling the trigger! ...'
+      } else if (chamber === bulletInChamber) {
+        message =  'BANG!!!!'
+      } else {
+        message = `you're safe!`
       }
 
       return (
