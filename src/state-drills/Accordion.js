@@ -6,7 +6,7 @@ class Accordion extends React.Component {
   }
 
   state = {
-    currentTabIndex: 0
+    currentTabIndex: -1
   }
 
   clickHandler(index) {
@@ -21,6 +21,7 @@ class Accordion extends React.Component {
   render() {
     const {sections} = this.props
     const currentTab = sections[this.state.currentTabIndex]
+
     let sectionTitles = sections.map((section, index) =>
       <button key={index} onClick={() => this.clickHandler(index)}>{section.title}</button>)
     let sectionContent = sections.map((section, index)=>
@@ -29,7 +30,8 @@ class Accordion extends React.Component {
       <ul>
         <li>
           {sectionTitles}
-          {sectionContent[currentTab]}
+          {sectionContent[this.state.currentTabIndex]}
+          {/* {currentTab.content} */}
         </li>
       </ul>
     )
