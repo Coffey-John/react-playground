@@ -29,7 +29,7 @@ class Accordion extends React.Component {
       <ul>
         <li>
           {sectionTitles}
-          {currentTab.sectionContent}
+          {sectionContent[currentTab]}
         </li>
       </ul>
     )
