@@ -20,16 +20,16 @@ class Accordion extends React.Component {
 
   render() {
     const {sections} = this.props
-    const currentTab = sections[currentTabIndex]
+    const currentTab = sections[this.currentTabIndex]
     let sectionTitles = sections.map((section, index) =>
       <button key={index} onClick={() => this.clickHandler(index)}>{section.title}</button>)
-    let sectionContent = sections.map((section)=>
+    let sectionContent = sections.map((section, index)=>
       <p>{section.content}</p>)
     return (
       <ul>
         <li>
           {sectionTitles}
-          {currentTab.sectionContent}
+          {sectionContent}
         </li>
       </ul>
     )
